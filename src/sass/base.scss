@@ -1,0 +1,50 @@
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  src: url(../assets/fonts/Roboto/Roboto-Regular.ttf) format("ttf");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color: #333333;
+  font-size: 20px;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+}
+
+body,
+ul,
+ol,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+input,
+button {
+  font-size: 1rem;
+}
+
+.page {
+  height: 100vh;
+  width: 100%;
+}
