@@ -1,12 +1,12 @@
 import React from "react";
-import "./JeneratedJoke.scss";
+import "./FavoriteJoke.scss";
 
-export function JeneratedJoke() {
+export function FavoriteJoke() {
   return (
-    <div className="jeneratedJoke__cover">
-      <button className="jeneratedJoke__like-btn"></button>
+    <div className="favoriteJoke__cover">
+      <button className="favoriteJoke__like-btn"></button>
       <div className="jeneratedJoke__content">
-        <div className="jeneratedJoke__content_messege-icon"></div>
+        <div className="favoriteJoke__content_messege-icon"></div>
         <div className="jeneratedJoke__content_cover content-block">
           <span className="content-block__ID">
             ID:{" "}
@@ -15,7 +15,7 @@ export function JeneratedJoke() {
             </a>
             <div className="content-block__ID_link-icon"></div>
           </span>
-          <p className="content-block__joke">
+          <p className="content-block__favorite-joke">
             No one truly knows who's Chuck Norris' real father. No one is
             biologically strong enough for this. He must've conceived himself.
           </p>
@@ -23,7 +23,6 @@ export function JeneratedJoke() {
             <span className="content-block__footer_last-upd">
               Last update: 1923 hours ago
             </span>
-            <div className="content-block__footer_category">celebrity</div>
           </div>
         </div>
       </div>

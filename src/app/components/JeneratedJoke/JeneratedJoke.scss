@@ -1,0 +1,100 @@
+.jeneratedJoke__cover {
+  width: 680px;
+  height: 225px;
+  background: #f8f8f8;
+  border-radius: 20px;
+  margin-top: 40px;
+  padding: 40px;
+  position: relative;
+}
+
+.jeneratedJoke__like-btn {
+  width: 20px;
+  height: 17px;
+  background-image: url("../../../assets/images/like_0.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  right: 40px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.jeneratedJoke__content {
+  display: flex;
+  height: 100%;
+  margin-top: 20px;
+  &_messege-icon {
+    width: 75px;
+    height: 40px;
+    background-image: url("../../../assets/images/messege_icon.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+.content-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 20px;
+
+  &__ID {
+    width: 100%;
+    font-weight: 500;
+    font-size: 0.5rem;
+    line-height: 0.7rem;
+    color: #ababab;
+    display: flex;
+
+    &_link {
+      margin-left: 5px;
+      text-decoration: underline;
+      color: #8ea7ff;
+    }
+
+    &_link-icon {
+      width: 10px;
+      height: 10px;
+      background-image: url("../../../assets/images/link_id_icon.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      margin-left: 5px;
+    }
+  }
+
+  &__joke {
+    font-size: 0.9rem;
+    line-height: 1.3rem;
+    color: #333333;
+  }
+
+  &__footer {
+    margin-top: 23px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    &_last-upd {
+      font-size: 0.5rem;
+      line-height: 0.7rem;
+      color: #ababab;
+      padding-top: 5px;
+    }
+
+    &_category {
+      width: 107px;
+      height: 24px;
+      background: #ffffff;
+      border-radius: 6px;
+      padding: 6px 17px;
+      font-weight: 600;
+      font-size: 0.5rem;
+      line-height: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #333333;
+    }
+  }
+}

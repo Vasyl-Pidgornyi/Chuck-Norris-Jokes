@@ -61,6 +61,10 @@
     line-height: 1.4rem;
     color: #ababab;
   }
+
+  &_favoriteJokes-cover {
+    margin-top: 20px;
+  }
 }
 
 .joke-selector {
@@ -104,5 +108,26 @@
         color: #333333;
       }
     }
+  }
+
+  &__subcategory.hidden {
+    display: none;
+  }
+
+  &__search-input-field {
+    margin-top: 15px;
+    width: 680px;
+    height: 42px;
+    border: 2px solid #333333;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    line-height: 1.1rem;
+    color: #ababab;
+    padding: 10px 15px;
+  }
+
+  &__search-input-field.hidden {
+    display: none;
   }
 }
