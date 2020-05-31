@@ -86,28 +86,6 @@
 
   &__subcategory {
     margin: 20px 0;
-
-    &_btn {
-      width: auto;
-      height: 28px;
-      padding: 5px 15px;
-      border: 2px solid #f8f8f8;
-      border-radius: 6px;
-      font-weight: 600;
-      font-size: 0.6rem;
-      line-height: 0.8rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #ababab;
-      outline: none;
-      margin-right: 10px;
-      background-color: transparent;
-
-      &.selected-btn {
-        background-color: #f8f8f8;
-        color: #333333;
-      }
-    }
   }
 
   &__subcategory.hidden {
