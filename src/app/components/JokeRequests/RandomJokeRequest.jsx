@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export function RandomeJokeRequest() {
+export function RandomJokeRequest() {
   const [error, setError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [item, setItem] = useState();
@@ -28,7 +28,7 @@ export function RandomeJokeRequest() {
   } else {
     return (
       <ul>
-        <li>Randome joke:</li>
+        <li>Random joke:</li>
         <li>ID: {item.id}</li>
         <li>Joke: {item.value}</li>
       </ul>

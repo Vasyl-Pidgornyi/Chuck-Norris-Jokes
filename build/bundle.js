@@ -28615,13 +28615,71 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _CategoryButtonGenerator_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CategoryButtonGenerator.scss */ "./src/app/components/CategoryButtonGenerator/CategoryButtonGenerator.scss");
 /* harmony import */ var _CategoryButtonGenerator_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_CategoryButtonGenerator_scss__WEBPACK_IMPORTED_MODULE_1__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 function CategoryButtonGenerator(_ref) {
-  var item = _ref.item;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "joke-selector__subcategory_btn"
-  }, item.category);
+  var selectedCategoryHandler = _ref.selectedCategoryHandler;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      error = _useState2[0],
+      setError = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      isLoaded = _useState4[0],
+      setIsLoaded = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
+      _useState6 = _slicedToArray(_useState5, 2),
+      categories = _useState6[0],
+      setCategories = _useState6[1];
+
+  var onCategoryChange = function onCategoryChange(category) {
+    event.preventDefault();
+    selectedCategoryHandler(category);
+    console.log(category);
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    fetch("https://api.chucknorris.io/jokes/categories").then(function (result) {
+      return result.json();
+    }).then(function (result) {
+      setCategories(result);
+      setIsLoaded(true);
+    }, function (error) {
+      setIsLoaded(true);
+      setError(error);
+    });
+  }, []);
+
+  if (error) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Error: ", error.message);
+  } else if (!isLoaded) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Loading...");
+  } else {
+    return categories.map(function (category) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "joke-selector__category_btn",
+        key: "".concat(category, ".id"),
+        onClick: function onClick() {
+          return onCategoryChange(category);
+        }
+      }, category);
+    });
+  }
 }
 
 /***/ }),
@@ -28776,7 +28834,9 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
-function CategoryJokeRequest() {
+function CategoryJokeRequest(_ref) {
+  var selectedCategory = _ref.selectedCategory;
+
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
       error = _useState2[0],
@@ -28792,9 +28852,13 @@ function CategoryJokeRequest() {
       item = _useState6[0],
       setItem = _useState6[1];
 
+  console.log(selectedCategory);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    // fetch("https://api.chucknorris.io/jokes/random?category={category}")
-    fetch("https://api.chucknorris.io/jokes/random?category=animal").then(function (result) {
+    // fetch("https://api.chucknorris.io/jokes/random?category={selectedCategory}")
+    fetch("https://api.chucknorris.io/jokes/random?category=animal") // fetch(
+    //   "https://api.chucknorris.io/jokes/random?category=" + selectedCategory
+    // )
+    .then(function (result) {
       return result.json();
     }).then(function (result) {
       setItem(result);
@@ -28816,16 +28880,16 @@ function CategoryJokeRequest() {
 
 /***/ }),
 
-/***/ "./src/app/components/JokeRequests/RandomeJokeRequest.jsx":
-/*!****************************************************************!*\
-  !*** ./src/app/components/JokeRequests/RandomeJokeRequest.jsx ***!
-  \****************************************************************/
-/*! exports provided: RandomeJokeRequest */
+/***/ "./src/app/components/JokeRequests/RandomJokeRequest.jsx":
+/*!***************************************************************!*\
+  !*** ./src/app/components/JokeRequests/RandomJokeRequest.jsx ***!
+  \***************************************************************/
+/*! exports provided: RandomJokeRequest */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RandomeJokeRequest", function() { return RandomeJokeRequest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RandomJokeRequest", function() { return RandomJokeRequest; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -28841,7 +28905,7 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
-function RandomeJokeRequest() {
+function RandomJokeRequest() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
       error = _useState2[0],
@@ -28874,7 +28938,7 @@ function RandomeJokeRequest() {
   } else if (!isLoaded) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Loading...");
   } else {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Randome joke:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "ID: ", item.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Joke: ", item.value));
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Random joke:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "ID: ", item.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Joke: ", item.value));
   }
 }
 
@@ -28961,7 +29025,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_JeneratedJoke_JeneratedJoke_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/JeneratedJoke/JeneratedJoke.jsx */ "./src/app/components/JeneratedJoke/JeneratedJoke.jsx");
 /* harmony import */ var _components_FavoriteJoke_FavoriteJoke_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/FavoriteJoke/FavoriteJoke.jsx */ "./src/app/components/FavoriteJoke/FavoriteJoke.jsx");
 /* harmony import */ var _components_CategoryButtonGenerator_CategoryButtonGenerator_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/CategoryButtonGenerator/CategoryButtonGenerator.jsx */ "./src/app/components/CategoryButtonGenerator/CategoryButtonGenerator.jsx");
-/* harmony import */ var _components_JokeRequests_RandomeJokeRequest_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/JokeRequests/RandomeJokeRequest.jsx */ "./src/app/components/JokeRequests/RandomeJokeRequest.jsx");
+/* harmony import */ var _components_JokeRequests_RandomJokeRequest_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/JokeRequests/RandomJokeRequest.jsx */ "./src/app/components/JokeRequests/RandomJokeRequest.jsx");
 /* harmony import */ var _components_JokeRequests_CategoryJokeRequest_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/JokeRequests/CategoryJokeRequest.jsx */ "./src/app/components/JokeRequests/CategoryJokeRequest.jsx");
 /* harmony import */ var _components_JokeRequests_SearchJokeRequest_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/JokeRequests/SearchJokeRequest.jsx */ "./src/app/components/JokeRequests/SearchJokeRequest.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -28986,66 +29050,31 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function App() {
-  var categories = [{
-    id: 1,
-    category: "animal"
-  }, {
-    id: 2,
-    category: "career"
-  }, {
-    id: 3,
-    category: "celebrity"
-  }, {
-    id: 4,
-    category: "dev"
-  }, {
-    id: 5,
-    category: "explicit"
-  }, {
-    id: 6,
-    category: "fashion"
-  }, {
-    id: 7,
-    category: "food"
-  }, {
-    id: 8,
-    category: "history"
-  }, {
-    id: 9,
-    category: "money"
-  }, {
-    id: 10,
-    category: "movie"
-  }, {
-    id: 11,
-    category: "music"
-  }, {
-    id: 12,
-    category: "political"
-  }, {
-    id: 13,
-    category: "religion"
-  }, {
-    id: 14,
-    category: "science"
-  }, {
-    id: 15,
-    category: "sport"
-  }, {
-    id: 16,
-    category: "travel"
-  }];
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      subCategory = _useState2[0],
-      setSubCategory = _useState2[1];
-
-  var subCategoryHandler = function subCategoryHandler(event) {
-    setSubCategory(!subCategory);
+  var getJokeMethod = {
+    Random: "Random",
+    ByCategory: "ByCategory",
+    BySearch: "BySearch"
   };
 
-  console.log(subCategory);
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(getJokeMethod.Random),
+      _useState2 = _slicedToArray(_useState, 2),
+      jokeGetMethod = _useState2[0],
+      setjokeGetMethod = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
+      _useState4 = _slicedToArray(_useState3, 2),
+      selectedCategory = _useState4[0],
+      setSelectedCategory = _useState4[1];
+
+  var changeJokeMethodHandler = function changeJokeMethodHandler(getMethod) {
+    setjokeGetMethod(getMethod);
+  };
+
+  var selectedCategoryHandler = function selectedCategoryHandler(category) {
+    setSelectedCategory(category);
+  };
+
+  console.log(selectedCategory);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
     className: "page__wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -29062,38 +29091,45 @@ function App() {
     type: "radio",
     name: "jokeRadioSelector",
     className: "joke-selector__category-selection",
-    defaultChecked: "checked"
+    defaultChecked: "checked",
+    onChange: function onChange() {
+      return changeJokeMethodHandler(getJokeMethod.Random);
+    }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "joke-selector__category-description"
   }, "Random")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "radio",
     name: "jokeRadioSelector",
     className: "joke-selector__category-selection",
-    onChange: subCategoryHandler
+    onChange: function onChange() {
+      return changeJokeMethodHandler(getJokeMethod.ByCategory);
+    }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "joke-selector__category-description"
   }, "From caterogies")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "joke-selector__subcategory"
-  }, categories.map(function (i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_CategoryButtonGenerator_CategoryButtonGenerator_jsx__WEBPACK_IMPORTED_MODULE_4__["CategoryButtonGenerator"], {
-      key: i.id,
-      item: i
-    });
+    className: "joke-selector__categories ".concat(jokeGetMethod != getJokeMethod.ByCategory ? "hidden" : "")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_CategoryButtonGenerator_CategoryButtonGenerator_jsx__WEBPACK_IMPORTED_MODULE_4__["CategoryButtonGenerator"], {
+    selectedCategoryHandler: selectedCategoryHandler
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "radio",
     name: "jokeRadioSelector",
-    className: "joke-selector__category-selection"
+    className: "joke-selector__category-selection",
+    onChange: function onChange() {
+      return changeJokeMethodHandler(getJokeMethod.BySearch);
+    }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "joke-selector__category-description"
   }, "Search")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
     placeholder: "Free text search...",
-    className: "joke-selector__search-input-field"
+    className: "joke-selector__search-input-field ".concat(jokeGetMethod != getJokeMethod.BySearch ? "hidden" : "")
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "page__content_getJoke-btn"
   }, "Get a joke"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "page__content_jeneratedJoke-cover"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_JeneratedJoke_JeneratedJoke_jsx__WEBPACK_IMPORTED_MODULE_2__["JeneratedJoke"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_JokeRequests_RandomeJokeRequest_jsx__WEBPACK_IMPORTED_MODULE_5__["RandomeJokeRequest"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_JokeRequests_CategoryJokeRequest_jsx__WEBPACK_IMPORTED_MODULE_6__["CategoryJokeRequest"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_JokeRequests_SearchJokeRequest_jsx__WEBPACK_IMPORTED_MODULE_7__["SearchJokeRequest"], null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_JeneratedJoke_JeneratedJoke_jsx__WEBPACK_IMPORTED_MODULE_2__["JeneratedJoke"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_JokeRequests_RandomJokeRequest_jsx__WEBPACK_IMPORTED_MODULE_5__["RandomJokeRequest"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_JokeRequests_CategoryJokeRequest_jsx__WEBPACK_IMPORTED_MODULE_6__["CategoryJokeRequest"], {
+    selectedCategory: selectedCategory
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_JokeRequests_SearchJokeRequest_jsx__WEBPACK_IMPORTED_MODULE_7__["SearchJokeRequest"], null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "page__favorites"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     className: "page__favorites_header"

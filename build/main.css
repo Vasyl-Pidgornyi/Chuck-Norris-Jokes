@@ -115,7 +115,7 @@
   background-size: cover;
   background-repeat: no-repeat; }
 
-.joke-selector__subcategory_btn {
+.joke-selector__category_btn {
   width: auto;
   height: 28px;
   padding: 5px 15px;
@@ -131,7 +131,7 @@
   margin-right: 10px;
   margin-bottom: 10px;
   background-color: transparent; }
-  .joke-selector__subcategory_btn.selected-btn {
+  .joke-selector__category_btn.selected-btn {
     background-color: #f8f8f8;
     color: #333333; }
 
@@ -546,9 +546,9 @@ button {
     font-size: 0.9rem;
     line-height: 1.3rem;
     vertical-align: bottom; }
-  .joke-selector__subcategory {
+  .joke-selector__categories {
     margin: 20px 0; }
-  .joke-selector__subcategory.hidden {
+  .joke-selector__categories.hidden {
     display: none; }
   .joke-selector__search-input-field {
     margin-top: 15px;

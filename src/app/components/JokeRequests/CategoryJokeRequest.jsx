@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
 
-export function CategoryJokeRequest() {
+export function CategoryJokeRequest({ selectedCategory }) {
   const [error, setError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [item, setItem] = useState();
 
+  console.log(selectedCategory);
+
   useEffect(() => {
-    // fetch("https://api.chucknorris.io/jokes/random?category={category}")
+    // fetch("https://api.chucknorris.io/jokes/random?category={selectedCategory}")
     fetch("https://api.chucknorris.io/jokes/random?category=animal")
+      // fetch(
+      //   "https://api.chucknorris.io/jokes/random?category=" + selectedCategory
+      // )
       .then((result) => result.json())
       .then(
         (result) => {
