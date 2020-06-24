@@ -5,7 +5,7 @@ export function CategoryJokeRequest({ selectedCategory }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [item, setItem] = useState();
 
-  console.log(selectedCategory);
+  // console.log(selectedCategory);
 
   useEffect(() => {
     // fetch("https://api.chucknorris.io/jokes/random?category={selectedCategory}")

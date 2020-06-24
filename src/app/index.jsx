@@ -3,9 +3,10 @@ import ReactDOM from "react-dom";
 import { JeneratedJoke } from "./components/JeneratedJoke/JeneratedJoke.jsx";
 import { FavoriteJoke } from "./components/FavoriteJoke/FavoriteJoke.jsx";
 import { CategoryButtonGenerator } from "./components/CategoryButtonGenerator/CategoryButtonGenerator.jsx";
-import { RandomJokeRequest } from "./components/JokeRequests/RandomJokeRequest.jsx";
-import { CategoryJokeRequest } from "./components/JokeRequests/CategoryJokeRequest.jsx";
-import { SearchJokeRequest } from "./components/JokeRequests/SearchJokeRequest.jsx";
+import { RandomJokeRequest } from "./components/Requests/RandomJokeRequest.jsx";
+import { CategoryJokeRequest } from "./components/Requests/CategoryJokeRequest.jsx";
+import { SearchJokeRequest } from "./components/Requests/SearchJokeRequest.jsx";
+import { Requests } from "./components/Requests/Requests.jsx";
 
 function App() {
   const getJokeMethod = {
@@ -16,6 +17,8 @@ function App() {
 
   const [jokeGetMethod, setjokeGetMethod] = useState(getJokeMethod.Random);
   const [selectedCategory, setSelectedCategory] = useState();
+  const [searchRequest, setJokeRequest] = useState();
+  const [jokes, setJokes] = useState([]);
 
   const changeJokeMethodHandler = (getMethod) => {
     setjokeGetMethod(getMethod);
@@ -25,7 +28,21 @@ function App() {
     setSelectedCategory(category);
   };
 
-  console.log(selectedCategory);
+  const jokeRequestHandler = (event) => {
+    setJokeRequest(event.target.value);
+  };
+
+  const getJokeButtonHandler = async () => {
+    let jokeList;
+    if (jokeGetMethod === getJokeMethod.Random) {
+      jokeList = new Array(await Requests.getRandomeJoke());
+    } else if (jokeGetMethod === getJokeMethod.ByCategory) {
+      jokeList = new Array(await Requests.getCategoryJoke(selectedCategory));
+    } else {
+      jokeList = (await Requests.getSearchJoke(searchRequest)).result;
+    }
+    setJokes(jokeList);
+  };
 
   return (
     <main className="page__wrapper">
@@ -81,14 +98,19 @@ function App() {
             className={`joke-selector__search-input-field ${
               jokeGetMethod != getJokeMethod.BySearch ? "hidden" : ""
             }`}
+            onChange={jokeRequestHandler}
           />
         </form>
-        <button className="page__content_getJoke-btn">Get a joke</button>
+        <button
+          className="page__content_getJoke-btn"
+          onClick={getJokeButtonHandler}
+        >
+          Get a joke
+        </button>
         <div className="page__content_jeneratedJoke-cover">
-          <JeneratedJoke />
-          <RandomJokeRequest />
-          <CategoryJokeRequest selectedCategory={selectedCategory} />
-          <SearchJokeRequest />
+          {jokes.map((joke, index) => (
+            <JeneratedJoke jokeItem={joke} key={index} />
+          ))}
         </div>
       </div>
       <div className="page__favorites">

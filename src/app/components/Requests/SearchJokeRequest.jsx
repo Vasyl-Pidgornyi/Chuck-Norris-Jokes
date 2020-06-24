@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 
-export function SearchJokeRequest() {
+export function SearchJokeRequest({ jokeRequest }) {
   const [error, setError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [item, setItem] = useState();
 
+  // console.log(jokeRequest);
+
   useEffect(() => {
     // fetch("https://api.chucknorris.io/jokes/search?query={query}")
     fetch("https://api.chucknorris.io/jokes/search?query=/chuck")
+      // fetch("https://api.chucknorris.io/jokes/search?query=" + jokeRequest)
       .then((result) => result.json())
       .then(
         (result) => {

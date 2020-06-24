@@ -5,11 +5,12 @@ export function CategoryButtonGenerator({ selectedCategoryHandler }) {
   const [error, setError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [categories, setCategories] = useState();
+  const [selectedBtn, setSelectedBtn] = useState();
 
   const onCategoryChange = (category) => {
     event.preventDefault();
     selectedCategoryHandler(category);
-    console.log(category);
+    setSelectedBtn(category);
   };
 
   useEffect(() => {
@@ -35,7 +36,9 @@ export function CategoryButtonGenerator({ selectedCategoryHandler }) {
   } else {
     return categories.map((category) => (
       <button
-        className="joke-selector__category_btn"
+        className={`joke-selector__category_btn ${
+          category === selectedBtn ? "selected-btn" : ""
+        }`}
         key={`${category}.id`}
         onClick={() => onCategoryChange(category)}
       >

@@ -9,6 +9,7 @@
 
 .page__content {
   width: 70%;
+  height: 100%;
   background-color: #ffffff;
   padding: 40px 140px;
   display: flex;
@@ -44,6 +45,7 @@
     font-size: 0.8rem;
     line-height: 1.1rem;
     color: #ffffff;
+    padding: 10px 0;
   }
 }
 
@@ -103,6 +105,7 @@
     line-height: 1.1rem;
     color: #ababab;
     padding: 10px 15px;
+    outline: none;
   }
 
   &__search-input-field.hidden {
