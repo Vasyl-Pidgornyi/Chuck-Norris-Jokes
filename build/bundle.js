@@ -29877,6 +29877,15 @@ __webpack_require__.r(__webpack_exports__);
 
 function JeneratedJoke(_ref) {
   var jokeItem = _ref.jokeItem;
+
+  var updTime = function updTime() {
+    var currentdate = new Date();
+    var datetime = currentdate.getFullYear() + "-" + ("0" + (currentdate.getMonth() + 1)).slice(-2) + "-" + ("0" + currentdate.getDate()).slice(-2) + " " + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+    var updHours = Math.floor(Math.abs(new Date(jokeItem.updated_at) - new Date(datetime)) / 3600000);
+    return updHours;
+  };
+
+  updTime();
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "jeneratedJoke__cover"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -29889,10 +29898,10 @@ function JeneratedJoke(_ref) {
     className: "jeneratedJoke__content_cover content-block"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "content-block__ID"
-  }, "ID: ", jokeItem.id, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, "ID:", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: jokeItem.url,
     className: "content-block__ID_link"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, jokeItem.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "content-block__ID_link-icon"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "content-block__joke"
@@ -29900,8 +29909,8 @@ function JeneratedJoke(_ref) {
     className: "content-block__footer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "content-block__footer_last-upd"
-  }, "Last update: ", jokeItem.updated_at), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "content-block__footer_category"
+  }, "Last update: ", updTime(), " hours ago"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: jokeItem.categories != 0 ? "content-block__footer_category" : ""
   }, jokeItem.categories)))));
 }
 

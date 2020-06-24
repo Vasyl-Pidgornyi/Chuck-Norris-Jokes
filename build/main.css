@@ -1,9 +1,9 @@
 .jeneratedJoke__cover {
   width: 680px;
-  height: 225px;
+  min-height: 225px;
   background: #f8f8f8;
   border-radius: 20px;
-  margin-top: 40px;
+  margin-bottom: 40px;
   padding: 40px;
   position: relative; }
 
@@ -24,7 +24,7 @@
   height: 100%;
   margin-top: 20px; }
   .jeneratedJoke__content_messege-icon {
-    width: 75px;
+    width: 45px;
     height: 40px;
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAALLSURBVHgBxZkxcuowEIbXzIMCGl5BAwVOQUNDCmhoIDMc4L0TvNzg5QaQE4QbcAB62piGBmaAhobCpoACCkJBA4WyK9sJZAyWZGO+mR2RjGz/7GpXK6OBIoyxOg4lNBof0dKOER9olmMTtL6maQbcGhSVRmuhbZk8JloHTYewcYS1WXh0QhOKN3phah7zw0T7B0Fg4XrtEm8gC7ND+s6iY0zPlBE4ZtHz7qUl5iGuDXbZiJo68ws3Tnhm9+flVJN2Ik7Hgdysw32hIv+AhZ3GsxA34f7iCEqWpvsH96DjPfPaVfv9HkajEWw2GwiCrutQLBYhmUz6Tf1NXnQFdnB4vjZ7OBzCbreDUqkEqVQKVDgcDvxLxuNxqNVqftNbKPAVHIGm38rtdrtsuw2+oazXa34vAbakLcbsrkQHARKJBARFILQutFnUf+EHX19fYjqdwnK5vDonl8vxZaFIiQQqF+V8Pg/ZbPbqHAmPecE9qIMix+ORZ7cfqkmFPAYSSCXHr+yQhzOZDCiSJoHiXcQPqJ7dGC5QmQiSBEgg7XlKXowgST4CCUyn5S+jxJLAomZhIjKTxMzncwjKarWSyWqLPGig/fGbSetoMBjwrKWwVavVs4eKiHfLUqVSAUEmJHAqMpNKRaPRgMViwc194Gw2A8uyoFAoCK03ShpqFgQx3G6GNmahBUUepI6kXC7zDofCRR4JmAxeWNjNPLgNa1vmSgpTv9/nXqO26QbiCOPrE7OPmcLtUq/XC6X18kE/k4v/eBO5CptObjem4+o6PTTRGqS2X3nrCwkL7QnXH43fhybnFPUK96flivOECYb6Roi9p2HRvpdxGXtpiV3Q+BcEt8CQMNCeQBYWTbjlX7/9EEnva0wWPlRI/0MY4I10Zr+2DQuKTPjl7ESoyeQhjzVlhWmgCD6IztN1sI+tumOnP0OQUaIZNGJt64MCn1lRlES8mdxQAAAAAElFTkSuQmCC);
     background-size: cover;
@@ -34,7 +34,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-left: 20px; }
+  margin-left: 20px;
+  width: 100%; }
   .content-block__ID {
     width: 100%;
     font-weight: 500;
@@ -56,9 +57,10 @@
   .content-block__joke {
     font-size: 0.9rem;
     line-height: 1.3rem;
-    color: #333333; }
+    color: #333333;
+    max-width: 540px; }
   .content-block__footer {
-    margin-top: 23px;
+    margin-top: 30px;
     display: flex;
     justify-content: space-between;
     width: 100%; }
@@ -78,7 +80,8 @@
       line-height: 0.7rem;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: #333333; }
+      color: #333333;
+      text-align: center; }
 
 .favoriteJoke__cover {
   position: relative;
@@ -480,13 +483,13 @@ button {
   font-size: 1rem; }
 
 .page {
-  height: 100vh;
+  min-height: 100vh;
   width: 100%; }
 
 .page__wrapper {
   display: flex;
   flex-wrap: nowrap;
-  height: 100vh; }
+  min-height: 100vh; }
 
 .page__content {
   width: 70%;
@@ -508,7 +511,7 @@ button {
     font-size: 1.2rem;
     line-height: 2.2rem; }
   .page__content_getJoke-btn {
-    margin-top: 23px;
+    margin: 23px 0 40px 0;
     width: 152px;
     height: 42px;
     background: linear-gradient(92.01deg, #8ea7ff 0%, #7291ff 100%);

@@ -4,7 +4,7 @@
 .page__wrapper {
   display: flex;
   flex-wrap: nowrap;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .page__content {
@@ -34,7 +34,7 @@
   }
 
   &_getJoke-btn {
-    margin-top: 23px;
+    margin: 23px 0 40px 0;
     width: 152px;
     height: 42px;
     background: linear-gradient(92.01deg, #8ea7ff 0%, #7291ff 100%);
